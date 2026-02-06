@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Loading from "./components/Loading";
 
 import { useAppContext } from "./context/AppContext";
 
@@ -18,11 +19,10 @@ import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import AddAddress from "./pages/AddAddress";
 import MyOrders from "./pages/MyOrders";
-import Mission from "./pages/mission";
+import Mission from "./pages/Mission"; // ✅ FIXED CASE
 import EcoJourney from "./pages/EcoJourney";
 import AllBlogs from "./pages/AllBlogs";
 import BlogPost from "./pages/BlogPost";
-import Loading from "./components/Loading";
 import Terms from "./pages/Terms";
 
 /* ===== USER DASHBOARD ===== */
@@ -47,8 +47,6 @@ import Payments from "./pages/seller/Payments";
 import LinkedInSubmissions from "./pages/seller/LinkedInSubmissions";
 import NewsletterSubscribers from "./pages/seller/NewsletterSubscribers";
 import SendNewsletter from "./pages/seller/SendNewsletter";
-
-/* 🔥 NEW SELLER FEATURES */
 import Withdrawals from "./pages/seller/Withdrawals";
 import CreateTask from "./pages/seller/CreateTask";
 
@@ -150,11 +148,8 @@ const App = () => {
               path="linkedin-submissions"
               element={<LinkedInSubmissions />}
             />
-
-            {/* 🔥 NEW WORKING ROUTES */}
             <Route path="withdrawals" element={<Withdrawals />} />
             <Route path="tasks" element={<CreateTask />} />
-
             <Route
               path="newsletter-subscribers"
               element={<NewsletterSubscribers />}
