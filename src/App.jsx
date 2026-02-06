@@ -38,7 +38,7 @@ import Settings from "./pages/dashboard/Settings";
 import SellerLogin from "./components/seller/SellerLogin";
 import SellerLayout from "./pages/seller/SellerLayout";
 import SellerDashboard from "./pages/seller/SellerDashboard";
-import UserSignups from "./pages/seller/usersignups";
+import UserSignups from "./pages/seller/UserSignups";
 import UserProfileVerifications from "./pages/seller/UserProfileVerifications";
 import AdminApplications from "./pages/seller/AdminApplications";
 import ApprovedUsers from "./pages/seller/ApprovedUsers";
