@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "npx vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
-  },
+  "dev": "vite",
+  "build": "npx vite build",
+  "postinstall": "chmod +x node_modules/.bin/vite || true",
+  "preview": "vite preview"
+}
   "dependencies": {
     "axios": "^1.7.7",
     "leaflet": "^1.9.4",
