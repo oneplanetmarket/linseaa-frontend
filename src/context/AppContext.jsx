@@ -5,11 +5,9 @@ import axios from "axios";
 
 /* ===================== AXIOS SETUP ===================== */
 
-// 🔥 VERY IMPORTANT: backend runs on 5000
+// 🔥 VERCEL BACKEND
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL =
-  import.meta.env.VITE_BACKEND_URL ||
-  (import.meta.env.PROD ? "" : "http://localhost:5000");
+axios.defaults.baseURL = "https://linseaa-backend-2fth.vercel.app";
 
 /* ===================== CONTEXT ===================== */
 
@@ -39,7 +37,6 @@ export const AppContextProvider = ({ children }) => {
     try {
       setLoadingUser(true);
 
-      // ✅ MATCHES backend: /api/user/is-auth
       const { data } = await axios.get("/api/user/is-auth");
 
       if (data?.success && data.user) {
@@ -58,7 +55,6 @@ export const AppContextProvider = ({ children }) => {
 
   const fetchSeller = async () => {
     try {
-      // ✅ MATCHES backend
       const { data } = await axios.get("/api/seller/is-auth");
       setIsSeller(!!data.success);
     } catch {
@@ -75,6 +71,7 @@ export const AppContextProvider = ({ children }) => {
         setProducts(data.products);
       }
     } catch (error) {
+      console.error("fetchProducts error:", error);
       toast.error("Failed to load products");
     }
   };
@@ -135,12 +132,14 @@ export const AppContextProvider = ({ children }) => {
   /* ===================== EFFECTS ===================== */
 
   useEffect(() => {
-    fetchUser();     // 🔥 REQUIRED
+    fetchUser();
     fetchSeller();
     fetchProducts();
   }, []);
 
   useEffect(() => {
+    if (!user) return;
+
     const syncCart = async () => {
       try {
         await axios.post("/api/cart/update", { cartItems });
@@ -149,41 +148,35 @@ export const AppContextProvider = ({ children }) => {
       }
     };
 
-    if (user) syncCart();
-  }, [cartItems]);
+    syncCart();
+  }, [cartItems, user]);
 
   /* ===================== CONTEXT VALUE ===================== */
 
   const value = {
-    // global
     axios,
     navigate,
     currency,
     loadingUser,
 
-    // user
     user,
     setUser,
     refetchUser: fetchUser,
     profileStatus: user?.status || "pending",
 
-    // roles
     isSeller,
     setIsSeller,
     isProducer,
     setIsProducer,
 
-    // ui
     showUserLogin,
     setShowUserLogin,
     searchQuery,
     setSearchQuery,
 
-    // products
     products,
     fetchProducts,
 
-    // cart
     cartItems,
     setCartItems,
     addToCart,
@@ -192,7 +185,6 @@ export const AppContextProvider = ({ children }) => {
     getCartAmount,
     getCartCount,
 
-    // auth
     logout,
   };
 
