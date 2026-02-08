@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
 import Navbar from "./components/Navbar";
@@ -19,7 +19,7 @@ import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import AddAddress from "./pages/AddAddress";
 import MyOrders from "./pages/MyOrders";
-import Mission from "./pages/Mission"; // ✅ FIXED CASE
+import Mission from "./pages/Mission";
 import EcoJourney from "./pages/EcoJourney";
 import AllBlogs from "./pages/AllBlogs";
 import BlogPost from "./pages/BlogPost";
@@ -169,6 +169,9 @@ const App = () => {
             <Route path="my-vehicle" element={<MyVehicle />} />
             <Route path="work-update" element={<WorkerWasteUpdate />} />
           </Route>
+
+          {/* ===== 🔥 CATCH ALL (FIXES 404) ===== */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
 

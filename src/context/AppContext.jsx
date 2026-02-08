@@ -7,7 +7,7 @@ import axios from "axios";
 
 // 🔥 VERCEL BACKEND
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "https://linseaa-backend-2fth.vercel.app";
+axios.defaults.baseURL = "http://localhost:5001/";
 
 /* ===================== CONTEXT ===================== */
 

@@ -54,7 +54,7 @@ const Navbar = () => {
         >
           <img
             src={assets.logo}
-            alt="LinkedRent"
+            alt="Lenseaa"
             className="h-8 w-auto object-contain"
           />
         </button>
